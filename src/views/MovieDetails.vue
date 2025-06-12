@@ -29,10 +29,18 @@
   </template>
   
   <script setup lang="ts">
+  import { computed, onMounted } from 'vue';
   import { useRoute } from 'vue-router';
-  import { useMovieDetails } from '../composables/useMovieDetails';
+  import { useMovieStore } from '../stores/movieStore';
   
   const route = useRoute();
-  const movieId = route.params.id?.toString() || new URLSearchParams(location.search).get('movieId') || '';
-  const { movie } = useMovieDetails(movieId);
+  const id = route.params.id?.toString() || new URLSearchParams(location.search).get('movieId') || '';
+  const movieStore = useMovieStore();
+  
+  onMounted(() => {
+    movieStore.fetchMovieDetail(id);
+  });
+  
+  const movie = computed(() => movieStore.movieDetails[id]);
   </script>
+  

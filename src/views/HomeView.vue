@@ -11,12 +11,12 @@
 
     <ul class="movie-list">
       <!-- Show skeleton cards while loading -->
-      <li v-if="!movies.length" v-for="n in 10" :key="n" class="movie-card loading">
+      <li v-if="!movieStore.movies.length" v-for="n in 10" :key="n" class="movie-card loading">
         <div class="skeleton-poster"></div>
         <div class="skeleton-title"></div>
       </li>
 
-      <li v-for="movie in movies" :key="movie.imdbID" class="movie-card">
+      <li v-for="movie in movieStore.movies" :key="movie.imdbID" class="movie-card">
         <RouterLink :to="`/movie/details/${movie.imdbID}`" class="link">
           <img :src="movie.Poster" :alt="movie.Title" class="poster" />
           <h3 class="movie-title">{{ movie.Title }}</h3>
@@ -32,7 +32,12 @@
 </template>
 
 <script setup lang="ts">
-import { useMovies } from '../composables/useMovies';
+import { onMounted } from 'vue';
+import { useMovieStore } from '../stores/movieStore';
 
-const { movies } = useMovies();
+const movieStore = useMovieStore();
+
+onMounted(() => {
+  movieStore.fetchMovies();
+});
 </script>
