@@ -38,7 +38,11 @@ export function useMovies() {
       searchTitles.map(title => fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&s=${title}`))
     );
     const data = await Promise.all(responses.map(res => res.json()));
-    movies.value = data.flatMap(d => d.Search || []).slice(0, 10);
+
+    setTimeout(() => {
+      movies.value = data.flatMap(d => d.Search || []).slice(0, 10);
+    }, 2000)
+    
   });
 
   return { movies };

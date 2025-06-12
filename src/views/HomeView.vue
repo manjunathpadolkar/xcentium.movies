@@ -10,6 +10,12 @@
     </section>
 
     <ul class="movie-list">
+      <!-- Show skeleton cards while loading -->
+      <li v-if="!movies.length" v-for="n in 10" :key="n" class="movie-card loading">
+        <div class="skeleton-poster"></div>
+        <div class="skeleton-title"></div>
+      </li>
+
       <li v-for="movie in movies" :key="movie.imdbID" class="movie-card">
         <RouterLink :to="`/movie/details/${movie.imdbID}`" class="link">
           <img :src="movie.Poster" :alt="movie.Title" class="poster" />

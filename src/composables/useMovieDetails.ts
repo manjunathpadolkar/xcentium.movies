@@ -13,7 +13,10 @@ export function useMovieDetails(id: string) {
 
   onMounted(async () => {
     const res = await fetch(`https://www.omdbapi.com/?apikey=${API_KEY}&i=${id}&plot=full`);
-    movie.value = await res.json();
+
+    setTimeout(async () => {
+      movie.value = await res.json();
+    }, 2000)
   });
 
   return { movie };

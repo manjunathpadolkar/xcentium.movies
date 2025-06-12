@@ -3,6 +3,17 @@
       <nav class="breadcrumb">
         <RouterLink to="/">Movie Gallery</RouterLink> / <span>{{ movie?.Title || 'Movie Details' }}</span>
       </nav>
+
+      <!-- 👇 Show Skeleton if data not loaded -->
+      <article v-if="!movie" class="details-article loading">
+        <div class="skeleton-poster"></div>
+        <div class="skeleton-text">
+          <div class="skeleton-line short"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+          <div class="skeleton-line"></div>
+        </div>
+      </article>
   
       <article v-if="movie" class="details-article">
         <img :src="movie.Poster" :alt="movie.Title" class="details-poster" />
