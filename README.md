@@ -43,3 +43,15 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+### Environment Configuration
+
+Create a `.env` file in the root of the project and add the following variable:
+
+```env
+VITE_OMDB_API_KEY=updateyourOMDBkey
+```
+
+Replace `updateyourOMDBkey` with your actual OMDb API key.
+
+This key is used to fetch movie data from the OMDb API.
