@@ -14,10 +14,10 @@ body {
 
 @keyframes backgroundMove {
   0% {
-    background-position: center bottom;
+    background-position: center top;
   }
   100% {
-    background-position: center top;
+    background-position: center bottom;
   }
 }
 
